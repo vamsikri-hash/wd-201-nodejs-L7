@@ -9,5 +9,15 @@
  </head>
  <body>
     <%- include('header.ejs') %>
+    <table>
+      <% for(let i = 0; i < allTodos.length; i++) { %>
+        <tr>
+          <td>
+          <%= allTodos[i].title %>
+          </td>
+        </tr>
+        <% } %>
+    </table>
+    <%- include('footer.ejs') %>
  </body>
 </html>

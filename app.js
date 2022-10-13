@@ -11,8 +11,13 @@ app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get("/", (request, response) => {
-  response.render("index"); // index refers to index.ejs
+app.get("/", async (request, response) => {
+  const allTodos = await Todo.getAllTodos();
+  if (request.accepts("html")) {
+    response.render("index", { allTodos });
+  } else {
+    response.json({ allTodos });
+  }
 });
 
 app.get("/todos", async function (request, response) {
